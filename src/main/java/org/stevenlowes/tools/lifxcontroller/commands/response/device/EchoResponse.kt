@@ -1,6 +1,7 @@
 package org.stevenlowes.tools.lifxcontroller.commands.response.device
 
 import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
+import java.util.*
 
 //TODO should we really be initialising with random bytes?
 data class EchoResponse(val bytes: ByteArray = ByteArray(64)) : ResponseCommand(59) {
@@ -12,6 +13,21 @@ data class EchoResponse(val bytes: ByteArray = ByteArray(64)) : ResponseCommand(
             }
             return EchoResponse(bytes)
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as EchoResponse
+
+        if (!Arrays.equals(bytes, other.bytes)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return Arrays.hashCode(bytes)
     }
 
 }

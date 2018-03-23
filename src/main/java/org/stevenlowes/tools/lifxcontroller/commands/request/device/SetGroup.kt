@@ -2,6 +2,7 @@ package org.stevenlowes.tools.lifxcontroller.commands.request.device
 
 import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.request.RequestCommandUpdateTime
+import java.util.*
 
 data class SetGroup(val group: ByteArray = ByteArray(16),
                     val label: String = "N/A") : RequestCommandUpdateTime(52) {
@@ -20,5 +21,25 @@ data class SetGroup(val group: ByteArray = ByteArray(16),
 
         val updatedAtBytes: ByteArray = Utils.toByteArray(8, updatedAtNanos.toLong())
         System.arraycopy(updatedAtBytes, 0, payloadBytes, 48, 8)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as SetGroup
+
+        if (!Arrays.equals(group, other.group)) return false
+        if (label != other.label) return false
+        if (!Arrays.equals(payloadBytes, other.payloadBytes)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = Arrays.hashCode(group)
+        result = 31 * result + label.hashCode()
+        result = 31 * result + Arrays.hashCode(payloadBytes)
+        return result
     }
 }

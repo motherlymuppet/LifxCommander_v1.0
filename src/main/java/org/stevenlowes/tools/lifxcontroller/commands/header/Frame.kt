@@ -62,7 +62,7 @@ data class Frame(
             val protocolBinStr = dataBinStr.substring(4, 16)
             val protocol = Integer.parseInt(protocolBinStr, 2)
 
-            val sourceBinStr = (7.downTo(4)).map { Utils.convertByteToBinaryString(byteArray[it]) }.joinToString("")
+            val sourceBinStr = (7.downTo(4)).joinToString("") { Utils.convertByteToBinaryString(byteArray[it]) }
             val source = java.lang.Long.parseLong(sourceBinStr, 2)
 
             return Frame(size, origin, tagged, addressable, protocol, source)

@@ -50,7 +50,7 @@ data class FrameAddress(
 
             var reserved1BinStr = ""
             for (i in 21 downTo 16) {
-                reserved1BinStr = reserved1BinStr + Utils.convertByteToBinaryString(byteArray[i])
+                reserved1BinStr += Utils.convertByteToBinaryString(byteArray[i])
             }
             val reserved1 = java.lang.Long.parseLong(reserved1BinStr, 2)
 

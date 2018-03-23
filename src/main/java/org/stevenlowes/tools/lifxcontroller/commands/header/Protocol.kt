@@ -27,7 +27,7 @@ data class Protocol(val reserved1: Long = 0,                // 64-Bits
         fun loadFrom(byteArray: ByteArray): Protocol {
             var reserved1BinStr = ""
             for (i in 31 downTo 24) {
-                reserved1BinStr = reserved1BinStr + Utils.convertByteToBinaryString(byteArray[i])
+                reserved1BinStr += Utils.convertByteToBinaryString(byteArray[i])
             }
             val reserved1 = java.lang.Long.parseLong(reserved1BinStr, 2)
 

@@ -2,6 +2,7 @@ package org.stevenlowes.tools.lifxcontroller.commands.response.device
 
 import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommandUpdateTime
 import java.math.BigInteger
+import java.util.*
 
 data class StateLocation(val location: ByteArray = ByteArray(16),
                          val label: String = "N/A") : ResponseCommandUpdateTime(50) {
@@ -30,5 +31,23 @@ data class StateLocation(val location: ByteArray = ByteArray(16),
             stateLocation.updatedAt = updatedAt
             return stateLocation
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as StateLocation
+
+        if (!Arrays.equals(location, other.location)) return false
+        if (label != other.label) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = Arrays.hashCode(location)
+        result = 31 * result + label.hashCode()
+        return result
     }
 }

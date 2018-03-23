@@ -23,7 +23,7 @@ data class Hue(val hueDegrees: Int) {
         val MAGENTA = Hue(300)
         val CRIMSON = Hue(330)
 
-        private val rand = Random();
+        private val rand = Random()
         val random: Hue get() = Hue(rand.nextInt(360))
     }
 
