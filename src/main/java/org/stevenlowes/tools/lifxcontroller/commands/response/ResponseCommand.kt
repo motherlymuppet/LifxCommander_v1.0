@@ -5,9 +5,9 @@ import org.stevenlowes.tools.lifxcontroller.commands.header.Frame
 import org.stevenlowes.tools.lifxcontroller.commands.header.FrameAddress
 import org.stevenlowes.tools.lifxcontroller.commands.header.Protocol
 import org.stevenlowes.tools.lifxcontroller.commands.response.device.*
-import org.stevenlowes.tools.lifxcontroller.commands.response.light.StateInfrared
-import org.stevenlowes.tools.lifxcontroller.commands.response.light.StateLight
-import org.stevenlowes.tools.lifxcontroller.commands.response.light.StatePowerLight
+import org.stevenlowes.tools.lifxcontroller.commands.response.light.GetInfraredResponse
+import org.stevenlowes.tools.lifxcontroller.commands.response.light.LightStateResponse
+import org.stevenlowes.tools.lifxcontroller.commands.response.light.LightPowerResponse
 
 abstract class ResponseCommand(code: Int) : HasCode(code) {
     companion object {
@@ -19,22 +19,22 @@ abstract class ResponseCommand(code: Int) : HasCode(code) {
             val payload: ResponseCommand
 
             when (protocol.type) {
-                3 -> payload = StateService.loadFrom(byteArray)
-                13 -> payload = StateHostInfo.loadFrom(byteArray)
-                15 -> payload = StateHostFirmware.loadFrom(byteArray)
-                17 -> payload = StateWifiInfo.loadFrom(byteArray)
-                19 -> payload = StateWifiFirmware.loadFrom(byteArray)
-                22 -> payload = StatePowerDevice.loadFrom(byteArray)
-                25 -> payload = StateLabel.loadFrom(byteArray)
-                33 -> payload = StateVersion.loadFrom(byteArray)
-                35 -> payload = StateInfo.loadFrom(byteArray)
-                45 -> payload = Acknowledgement()
-                50 -> payload = StateLocation.loadFrom(byteArray)
-                53 -> payload = StateGroup.loadFrom(byteArray)
+                3 -> payload = ServiceResponse.loadFrom(byteArray)
+                13 -> payload = HostInfoResponse.loadFrom(byteArray)
+                15 -> payload = HostFirmwareResponse.loadFrom(byteArray)
+                17 -> payload = WifiInfoResponse.loadFrom(byteArray)
+                19 -> payload = WifiFirmwareResponse.loadFrom(byteArray)
+                22 -> payload = GetDevicePowerResponse.loadFrom(byteArray)
+                25 -> payload = GetLabelResponse.loadFrom(byteArray)
+                33 -> payload = VersionResponse.loadFrom(byteArray)
+                35 -> payload = InfoResponse.loadFrom(byteArray)
+                45 -> payload = AckResponse()
+                50 -> payload = GetLocationResponse.loadFrom(byteArray)
+                53 -> payload = GetGroupResponse.loadFrom(byteArray)
                 59 -> payload = EchoResponse.loadFrom(byteArray)
-                107 -> payload = StateLight.loadFrom(byteArray)
-                118 -> payload = StatePowerLight.loadFrom(byteArray)
-                121 -> payload = StateInfrared.loadFrom(byteArray)
+                107 -> payload = LightStateResponse.loadFrom(byteArray)
+                118 -> payload = LightPowerResponse.loadFrom(byteArray)
+                121 -> payload = GetInfraredResponse.loadFrom(byteArray)
                 else -> throw RuntimeException("Code not recgonised")
             }
 
