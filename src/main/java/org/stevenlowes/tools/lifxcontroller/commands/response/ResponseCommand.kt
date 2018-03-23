@@ -10,8 +10,6 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.light.StateLight
 import org.stevenlowes.tools.lifxcontroller.commands.response.light.StatePowerLight
 import org.stevenlowes.tools.lifxcontroller.commands.response.device.Acknowledgement
 
-//TODO what is the difference between this and SimpleCommand
-
 abstract class ResponseCommand(code: Int) : HasCode(code){
     companion object {
         fun loadFrom(byteArray: ByteArray): ResponseCommand{

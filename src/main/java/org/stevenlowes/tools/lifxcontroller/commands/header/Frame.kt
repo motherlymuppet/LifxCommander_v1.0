@@ -11,43 +11,40 @@ data class Frame(
         val source: Long = 0            // 32-Bits
                 ) {
 
-    val byteArray: ByteArray
-        get() {
-            val byteArray = ByteArray(8)
+    val byteArray: ByteArray = ByteArray(8)
 
-            val sizeBinStr = Integer.toBinaryString(0x10000 or size).substring(1)
-            val sizeBytes: ByteArray = Utils.convertBinaryStringToLittleEndianByteArray(sizeBinStr)
-            byteArray[0] = sizeBytes[0]
-            byteArray[1] = sizeBytes[1]
+    init {
+        val sizeBinStr = Integer.toBinaryString(0x10000 or size).substring(1)
+        val sizeBytes: ByteArray = Utils.convertBinaryStringToLittleEndianByteArray(sizeBinStr)
+        byteArray[0] = sizeBytes[0]
+        byteArray[1] = sizeBytes[1]
 
-            val originBinStr = Integer.toBinaryString(0x04 or origin).substring(1)
+        val originBinStr = Integer.toBinaryString(0x04 or origin).substring(1)
 
-            val taggedBinStr: String = if (tagged)
-                "1"
-            else
-                "0"
+        val taggedBinStr: String = if (tagged)
+            "1"
+        else
+            "0"
 
-            val addressableBinStr: String = if (addressable)
-                "1"
-            else
-                "0"
+        val addressableBinStr: String = if (addressable)
+            "1"
+        else
+            "0"
 
-            val protocolBinStr = Integer.toBinaryString(0x1000 or protocol).substring(1)
-            val dataBinStr = originBinStr + taggedBinStr + addressableBinStr + protocolBinStr
+        val protocolBinStr = Integer.toBinaryString(0x1000 or protocol).substring(1)
+        val dataBinStr = originBinStr + taggedBinStr + addressableBinStr + protocolBinStr
 
-            val dataBytes = Utils.convertBinaryStringToLittleEndianByteArray(dataBinStr)
-            byteArray[2] = dataBytes[0]
-            byteArray[3] = dataBytes[1]
+        val dataBytes = Utils.convertBinaryStringToLittleEndianByteArray(dataBinStr)
+        byteArray[2] = dataBytes[0]
+        byteArray[3] = dataBytes[1]
 
-            val sourceBinStr = java.lang.Long.toBinaryString(0x100000000L or source).substring(1)
-            val sourceBytes = Utils.convertBinaryStringToLittleEndianByteArray(sourceBinStr)
-            byteArray[4] = sourceBytes[0]
-            byteArray[5] = sourceBytes[1]
-            byteArray[6] = sourceBytes[2]
-            byteArray[7] = sourceBytes[3]
-
-            return byteArray
-        }
+        val sourceBinStr = java.lang.Long.toBinaryString(0x100000000L or source).substring(1)
+        val sourceBytes = Utils.convertBinaryStringToLittleEndianByteArray(sourceBinStr)
+        byteArray[4] = sourceBytes[0]
+        byteArray[5] = sourceBytes[1]
+        byteArray[6] = sourceBytes[2]
+        byteArray[7] = sourceBytes[3]
+    }
 
     companion object {
         fun loadFrom(byteArray: ByteArray): Frame {

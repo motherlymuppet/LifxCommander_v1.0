@@ -6,11 +6,13 @@
  * Date: February 08, 2018
  */
 
-package org.stevenlowes.tools.lifxcontroller.controller
+package org.stevenlowes.tools.lifxcontroller
 
 import org.stevenlowes.tools.lifxcontroller.commands.request.light.SetColor
 import org.stevenlowes.tools.lifxcontroller.commands.request.light.SetPowerLight
 import org.stevenlowes.tools.lifxcontroller.commands.request.light.SetWaveform
+import org.stevenlowes.tools.lifxcontroller.controller.ControlMethods
+import org.stevenlowes.tools.lifxcontroller.controller.ReceiveMessages
 import org.stevenlowes.tools.lifxcontroller.values.Color
 import org.stevenlowes.tools.lifxcontroller.values.Hue
 import org.stevenlowes.tools.lifxcontroller.values.Level
@@ -31,13 +33,17 @@ fun main(args: Array<String>) {
 
     for (i in 1..3) {
         ips.forEach {
-            ControlMethods.sendUdpMessage(SetPowerLight(Level.MAX).requestBytes, it, port)
+            ControlMethods.sendUdpMessage(SetPowerLight(Level.MAX).requestBytes,
+                                          it,
+                                          port)
         }
 
         Thread.sleep(1000)
 
         ips.forEach {
-            ControlMethods.sendUdpMessage(SetPowerLight(Level.MIN).requestBytes, it, port)
+            ControlMethods.sendUdpMessage(SetPowerLight(Level.MIN).requestBytes,
+                                          it,
+                                          port)
         }
 
         ips.forEach {
@@ -48,7 +54,9 @@ fun main(args: Array<String>) {
         Thread.sleep(1000)
 
         ips.forEach {
-            ControlMethods.sendUdpMessage(SetPowerLight(Level.MAX).requestBytes, it, port)
+            ControlMethods.sendUdpMessage(SetPowerLight(Level.MAX).requestBytes,
+                                          it,
+                                          port)
         }
 
         Thread.sleep(1000)
@@ -58,7 +66,9 @@ fun main(args: Array<String>) {
             ControlMethods.sendUdpMessage(SetWaveform(color = Color(Hue.random),
                                                       isTransient = true,
                                                       period = 100,
-                                                      cycles = 10f).requestBytes, it, port)
+                                                      cycles = 10f).requestBytes,
+                                          it,
+                                          port)
         }
 
         Thread.sleep(1000)

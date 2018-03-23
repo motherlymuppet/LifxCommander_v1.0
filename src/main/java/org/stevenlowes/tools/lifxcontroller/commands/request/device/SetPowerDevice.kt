@@ -5,8 +5,5 @@ import org.stevenlowes.tools.lifxcontroller.values.Level
 
 data class SetPowerDevice(val level: Level = Level.MIN) : RequestCommand(21) {
 
-    override val payloadBytes: ByteArray
-        get() {
-            return level.byteArray
-        }
+    override val payloadBytes: ByteArray  = level.byteArray
 }

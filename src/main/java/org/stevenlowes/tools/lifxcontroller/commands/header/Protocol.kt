@@ -8,27 +8,23 @@ data class Protocol(val reserved1: Long = 0,                // 64-Bits
                     val reserved2: Int = 0                // 16-Bits
                    ) {
 
+    val byteArray: ByteArray = ByteArray(12)
 
-    val byteArray: ByteArray
-        get() {
-            val byteArray = ByteArray(12)
+    init {
+        val reserved1Bytes: ByteArray = Utils.toByteArray(8, reserved1)
+        System.arraycopy(reserved1Bytes, 0, byteArray, 0, 8)
 
-            val reserved1Bytes: ByteArray = Utils.toByteArray(8, reserved1)
-            System.arraycopy(reserved1Bytes, 0, byteArray, 0, 8)
+        val typeBytes: ByteArray = Utils.toByteArray(2, type)
+        byteArray[8] = typeBytes[0]
+        byteArray[9] = typeBytes[1]
 
-            val typeBytes: ByteArray = Utils.toByteArray(2, type)
-            byteArray[8] = typeBytes[0]
-            byteArray[9] = typeBytes[1]
-
-            val reserved2Bytes: ByteArray = Utils.toByteArray(2, reserved2)
-            byteArray[10] = reserved2Bytes[0]
-            byteArray[11] = reserved2Bytes[1]
-
-            return byteArray
-        }
+        val reserved2Bytes: ByteArray = Utils.toByteArray(2, reserved2)
+        byteArray[10] = reserved2Bytes[0]
+        byteArray[11] = reserved2Bytes[1]
+    }
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): Protocol{
+        fun loadFrom(byteArray: ByteArray): Protocol {
             var reserved1BinStr = ""
             for (i in 31 downTo 24) {
                 reserved1BinStr = reserved1BinStr + Utils.convertByteToBinaryString(byteArray[i])
