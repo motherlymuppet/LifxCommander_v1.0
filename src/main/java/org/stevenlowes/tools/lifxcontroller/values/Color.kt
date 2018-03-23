@@ -6,6 +6,7 @@ data class Color(var hue: Hue = Hue.RED,
                  var temp: Temp = Temp.MEDIUM){
     companion object {
         val RANDOM: Color get() = Color(hue = Hue.RANDOM)
-        val WHITE: Color get() = Color(saturation = Level.MIN)
+        val WHITE: Color = Color(saturation = Level.MIN)
+        val BLACK: Color = Color(brightness = Level.MIN, saturation = Level.MIN)
     }
 }

@@ -12,7 +12,7 @@ data class RequestSetWaveform(val reserved: Int = 0,
                               val color: Color = Color(),
                               val period: Long = 0,
                               val cycles: Float = 0f,
-                              val skewRatio: Level = Level.MIN,
+                              val dutyCycle: Level = Level.MIN,
                               val waveform: Waveform = Waveform.SAWTOOTH) :
         RequestCommand(103) {
 
@@ -47,7 +47,7 @@ data class RequestSetWaveform(val reserved: Int = 0,
         val cyclesBytes: ByteArray = Utils.toByteArray(4, cycles)
         System.arraycopy(cyclesBytes, 0, payloadBytes, 14, 4)
 
-        val skewRatioBytes: ByteArray = skewRatio.byteArray
+        val skewRatioBytes: ByteArray = dutyCycle.byteArray
         payloadBytes[18] = skewRatioBytes[0]
         payloadBytes[19] = skewRatioBytes[1]
 
