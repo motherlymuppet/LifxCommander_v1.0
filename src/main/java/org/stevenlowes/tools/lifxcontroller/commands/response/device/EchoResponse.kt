@@ -3,7 +3,6 @@ package org.stevenlowes.tools.lifxcontroller.commands.response.device
 import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 import java.util.*
 
-//TODO should we really be initialising with random bytes?
 data class EchoResponse(val bytes: ByteArray = ByteArray(64)) : ResponseCommand(59) {
     companion object {
         fun loadFrom(byteArray: ByteArray): EchoResponse {
