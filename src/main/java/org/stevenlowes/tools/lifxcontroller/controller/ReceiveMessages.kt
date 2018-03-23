@@ -10,7 +10,9 @@ internal class ReceiveMessages(private val port: Int = 56700) : Thread() {
         while (true) {
             val byteArray = ControlMethods.receiveUdpMessage(port)
             val payload = ResponseCommand.loadFrom(byteArray)
-            println(payload)
+            if(payload != null){
+                println(payload)
+            }
         }
     }
 

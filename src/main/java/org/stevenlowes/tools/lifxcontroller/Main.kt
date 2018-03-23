@@ -8,30 +8,45 @@
 
 package org.stevenlowes.tools.lifxcontroller
 
-import org.stevenlowes.tools.lifxcontroller.commands.request.light.RequestSetColor
+import org.stevenlowes.tools.lifxcontroller.commands.request.light.RequestSetLightPower
 import org.stevenlowes.tools.lifxcontroller.controller.ReceiveMessages
-import org.stevenlowes.tools.lifxcontroller.values.Color
-import org.stevenlowes.tools.lifxcontroller.values.Hue
+import org.stevenlowes.tools.lifxcontroller.values.Level
+import java.net.InetAddress
 
 fun main(args: Array<String>) {
-    val port = 56700
-    val ip1 = "192.168.1.106"
-    val ip2 = "192.168.1.107"
-    val ip3 = "192.168.1.108"
-    val ip4 = "192.168.1.109"
-    val ip5 = "192.168.1.110"
-    val ip6 = "192.168.1.111"
+    val light1 = InetAddress.getByName("192.168.1.106")
+    val light2 = InetAddress.getByName("192.168.1.107")
+    val light3 = InetAddress.getByName("192.168.1.108")
+    val light4 = InetAddress.getByName("192.168.1.109")
+    val light5 = InetAddress.getByName("192.168.1.110")
+    val light6 = InetAddress.getByName("192.168.1.111")
 
-    val ips = listOf(ip1, ip2, ip3, ip4, ip5, ip6)
+    val closeLights = listOf(light1, light2, light3)
+    val farLights = listOf(light4, light5, light6)
 
-    // Start Receiving Incoming commands
-    ReceiveMessages(port).start()
+    val lights = listOf(light1, light2, light3, light4, light5, light6)
 
-    (1..10).forEach {
-        RequestSetColor(color = Color.RANDOM).broadcast()
+    // Start Receiving Incoming responses
+    ReceiveMessages().start()
 
-        Thread.sleep(200)
+    val off = RequestSetLightPower(Level.MIN)
+    val on = RequestSetLightPower(Level.MAX)
+    val count = 1..1
+    val sleep: Long = 500
+
+    off.broadcast()
+
+    count.forEach {
+        lights.forEach { light ->
+            off.broadcast()
+            Thread.sleep(sleep)
+            on.send(light)
+            Thread.sleep(sleep)
+            off.send(light)
+            Thread.sleep(sleep)
+        }
+        //Thread.sleep(5000)
     }
 
-    RequestSetColor(color = Color.WHITE).broadcast()
+    on.broadcast()
 }

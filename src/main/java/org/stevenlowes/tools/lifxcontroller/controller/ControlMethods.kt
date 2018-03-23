@@ -4,7 +4,7 @@ import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetAddress
 import java.net.NetworkInterface
-
+//TODO get rid of tihs
 internal object ControlMethods {
     fun sendBroadcastMessage(messageByteArray: ByteArray, port: Int) {
         val socket = DatagramSocket()
