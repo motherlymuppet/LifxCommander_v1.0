@@ -7,7 +7,7 @@ import java.math.BigInteger
 
 //TODO remove default args from responses
 
-data class StateGroup(val group: ByteArray = Utils.randomBytes(16), val label: String = "N/A") : ResponseCommandUpdateTime(53) {
+data class StateGroup(val group: ByteArray = ByteArray(16), val label: String = "N/A") : ResponseCommandUpdateTime(53) {
 
     companion object {
         fun loadFrom(byteArray: ByteArray): StateGroup{

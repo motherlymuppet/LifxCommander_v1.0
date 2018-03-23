@@ -5,8 +5,8 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommandUpd
 
 import java.math.BigInteger
 
-data class StateLocation(val location: ByteArray = Utils.randomBytes(16),
-                    val label: String = "N/A") : ResponseCommandUpdateTime(50) {
+data class StateLocation(val location: ByteArray = ByteArray(16),
+                         val label: String = "N/A") : ResponseCommandUpdateTime(50) {
 
     companion object {
         fun loadFrom(byteArray: ByteArray): StateLocation{

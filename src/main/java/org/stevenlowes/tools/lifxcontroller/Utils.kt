@@ -8,8 +8,6 @@ import java.util.*
 
 object Utils {
 
-    private val rand = Random()
-
     fun convertBinaryStringToLittleEndianByteArray(binValueAsString: String): ByteArray {
         if (binValueAsString.length % 8 == 0) {
             val arrayLength = binValueAsString.length / 8
@@ -63,12 +61,6 @@ object Utils {
         sdf.timeZone = TimeZone.getTimeZone("UTC")
 
         return sdf.format(date)
-    }
-
-    fun randomBytes(count: Int): ByteArray {
-        val bytes = ByteArray(count)
-        rand.nextBytes(bytes)
-        return bytes
     }
 
     fun toByteArray(bytes: Int, number: Long): ByteArray {
