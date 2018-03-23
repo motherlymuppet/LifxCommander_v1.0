@@ -5,11 +5,11 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 import java.math.BigInteger
 
 data class StateInfo(val time: BigInteger = BigInteger.ZERO,
-                val uptime: BigInteger = BigInteger.ZERO,
-                val downtime: BigInteger = BigInteger.ZERO) : ResponseCommand(35) {
+                     val uptime: BigInteger = BigInteger.ZERO,
+                     val downtime: BigInteger = BigInteger.ZERO) : ResponseCommand(35) {
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): StateInfo{
+        fun loadFrom(byteArray: ByteArray): StateInfo {
             val timeBytes = ByteArray(8)
             for (i in 43 downTo 36) {
                 timeBytes[-1 * i + 43] = byteArray[i]

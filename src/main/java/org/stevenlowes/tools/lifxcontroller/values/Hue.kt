@@ -27,6 +27,9 @@ data class Hue(val hueDegrees: Int) {
         val random: Hue get() = Hue(rand.nextInt(360))
     }
 
-    val binaryString: String = String.format("%16s", Integer.toBinaryString((hueDegrees.toDouble() / 360.toDouble() * Short.MAX_VALUE).toInt())).replace(' ', '0')
+    val binaryString: String = String.format("%16s",
+                                             Integer.toBinaryString((hueDegrees.toDouble() / 360.toDouble() * Short.MAX_VALUE).toInt())).replace(
+            ' ',
+            '0')
     val byteArray: ByteArray = Utils.convertBinaryStringToLittleEndianByteArray(binaryString)
 }

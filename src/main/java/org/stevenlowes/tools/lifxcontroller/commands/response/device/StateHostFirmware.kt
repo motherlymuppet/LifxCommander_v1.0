@@ -6,11 +6,11 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 import java.math.BigInteger
 
 data class StateHostFirmware(val build: BigInteger = BigInteger.ZERO,
-                        val reserved: BigInteger = BigInteger.ZERO,
-                        val version: Long = 0L) : ResponseCommand(15) {
+                             val reserved: BigInteger = BigInteger.ZERO,
+                             val version: Long = 0L) : ResponseCommand(15) {
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): StateHostFirmware{
+        fun loadFrom(byteArray: ByteArray): StateHostFirmware {
             //TODO can we remove this?
 
             //String buildBinStr = "";

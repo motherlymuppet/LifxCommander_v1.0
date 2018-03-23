@@ -1,6 +1,5 @@
 package org.stevenlowes.tools.lifxcontroller.commands.request.device
 
-import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.request.RequestCommand
 
 data class EchoRequest(val payload: ByteArray = ByteArray(64)) : RequestCommand(58) {

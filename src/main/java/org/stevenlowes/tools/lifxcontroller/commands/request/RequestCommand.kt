@@ -8,7 +8,7 @@ import org.stevenlowes.tools.lifxcontroller.commands.header.Protocol
 abstract class RequestCommand(code: Int) : HasCode(code) {
     abstract val payloadBytes: ByteArray
 
-    val requestBytes: ByteArray by lazy{
+    val requestBytes: ByteArray by lazy {
         val startFrame = Frame()
         val frameAddress = FrameAddress()
         val protocol = Protocol(type = code)

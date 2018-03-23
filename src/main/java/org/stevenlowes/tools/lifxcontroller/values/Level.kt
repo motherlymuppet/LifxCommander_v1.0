@@ -8,7 +8,7 @@ import org.stevenlowes.tools.lifxcontroller.Utils
  */
 data class Level(val value: Double) {
 
-    constructor(value: Int): this(value.toDouble() / 65536)
+    constructor(value: Int) : this(value.toDouble() / 65536)
 
     companion object {
         val MIN = Level(0.0)

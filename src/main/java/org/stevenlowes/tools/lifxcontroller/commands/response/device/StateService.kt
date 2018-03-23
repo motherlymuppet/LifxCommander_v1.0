@@ -6,7 +6,7 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 data class StateService(val service: Int = 0, val port: Int = 0) : ResponseCommand(3) {
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): StateService{
+        fun loadFrom(byteArray: ByteArray): StateService {
             val serviceBinStr = Utils.convertByteToBinaryString(byteArray[36])
             val service = Integer.parseInt(serviceBinStr, 2)
 

@@ -6,7 +6,7 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 data class StateVersion(val vendor: Long = 0, val product: Long = 0, val version: Long = 0) : ResponseCommand(33) {
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): StateVersion{
+        fun loadFrom(byteArray: ByteArray): StateVersion {
             var vendorBinStr = ""
             for (i in 39 downTo 36) {
                 vendorBinStr += Utils.convertByteToBinaryString(byteArray[i])

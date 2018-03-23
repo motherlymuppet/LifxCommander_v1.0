@@ -1,6 +1,5 @@
 package org.stevenlowes.tools.lifxcontroller.commands.response.device
 
-import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 
 //TODO should we really be initialising with random bytes?

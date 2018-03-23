@@ -4,13 +4,13 @@ import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 
 data class StateWifiInfo(val signal: Float = 0f,
-                    val tx: Long = 0,
-                    val rx: Long = 0,
-                    val reserved: Int = 0) : ResponseCommand(
+                         val tx: Long = 0,
+                         val rx: Long = 0,
+                         val reserved: Int = 0) : ResponseCommand(
         17) {
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): StateWifiInfo{
+        fun loadFrom(byteArray: ByteArray): StateWifiInfo {
             var signalBinStr = ""
             for (i in 39 downTo 36) {
                 signalBinStr += Utils.convertByteToBinaryString(byteArray[i])

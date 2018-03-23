@@ -8,11 +8,10 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.device.*
 import org.stevenlowes.tools.lifxcontroller.commands.response.light.StateInfrared
 import org.stevenlowes.tools.lifxcontroller.commands.response.light.StateLight
 import org.stevenlowes.tools.lifxcontroller.commands.response.light.StatePowerLight
-import org.stevenlowes.tools.lifxcontroller.commands.response.device.Acknowledgement
 
-abstract class ResponseCommand(code: Int) : HasCode(code){
+abstract class ResponseCommand(code: Int) : HasCode(code) {
     companion object {
-        fun loadFrom(byteArray: ByteArray): ResponseCommand{
+        fun loadFrom(byteArray: ByteArray): ResponseCommand {
             val frame = Frame.loadFrom(byteArray)
             val frameAddress = FrameAddress.loadFrom(byteArray)
             val protocol = Protocol.loadFrom(byteArray)

@@ -6,8 +6,8 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommand
 import java.math.BigInteger
 
 data class StateWifiFirmware(val build: BigInteger = BigInteger.ZERO,
-                        val reserved: BigInteger = BigInteger.ZERO,
-                        val version: Long = 0) : ResponseCommand(19) {
+                             val reserved: BigInteger = BigInteger.ZERO,
+                             val version: Long = 0) : ResponseCommand(19) {
 
     companion object {
         fun loadFrom(byteArray: ByteArray): StateWifiFirmware {

@@ -1,15 +1,13 @@
 package org.stevenlowes.tools.lifxcontroller.commands.response.device
 
-import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommandUpdateTime
-
 import java.math.BigInteger
 
 data class StateLocation(val location: ByteArray = ByteArray(16),
                          val label: String = "N/A") : ResponseCommandUpdateTime(50) {
 
     companion object {
-        fun loadFrom(byteArray: ByteArray): StateLocation{
+        fun loadFrom(byteArray: ByteArray): StateLocation {
             val location = ByteArray(16)
             for (i in 51 downTo 36) {
                 location[-1 * i + 51] = byteArray[i]
