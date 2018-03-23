@@ -8,6 +8,4 @@ interface Command{
     fun send(light: InetAddress){
         send(listOf(light))
     }
-
-    fun broadcast()
 }

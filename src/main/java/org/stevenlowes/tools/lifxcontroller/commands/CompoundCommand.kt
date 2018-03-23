@@ -9,10 +9,4 @@ open class CompoundCommand(vararg val commands: Command): Command{
             command.send(lights)
         }
     }
-
-    override fun broadcast() {
-        for (command in commands) {
-            command.broadcast()
-        }
-    }
 }
