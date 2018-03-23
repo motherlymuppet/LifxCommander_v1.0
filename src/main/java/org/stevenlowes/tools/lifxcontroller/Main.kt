@@ -8,9 +8,10 @@
 
 package org.stevenlowes.tools.lifxcontroller
 
-import org.stevenlowes.tools.lifxcontroller.commands.request.light.LightStateRequest
-import org.stevenlowes.tools.lifxcontroller.controller.ControlMethods
+import org.stevenlowes.tools.lifxcontroller.commands.request.light.RequestSetColor
 import org.stevenlowes.tools.lifxcontroller.controller.ReceiveMessages
+import org.stevenlowes.tools.lifxcontroller.values.Color
+import org.stevenlowes.tools.lifxcontroller.values.Hue
 
 fun main(args: Array<String>) {
     val port = 56700
@@ -26,7 +27,11 @@ fun main(args: Array<String>) {
     // Start Receiving Incoming commands
     ReceiveMessages(port).start()
 
-    ControlMethods.sendUdpMessage(LightStateRequest().requestBytes, ip1, port)
+    (1..10).forEach {
+        RequestSetColor(color = Color.RANDOM).broadcast()
 
-    Thread.sleep(10000)
+        Thread.sleep(200)
+    }
+
+    RequestSetColor(color = Color.WHITE).broadcast()
 }

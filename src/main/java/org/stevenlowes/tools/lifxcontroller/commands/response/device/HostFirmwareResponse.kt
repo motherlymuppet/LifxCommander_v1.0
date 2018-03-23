@@ -11,20 +11,12 @@ data class HostFirmwareResponse(val build: BigInteger = BigInteger.ZERO,
 
     companion object {
         fun loadFrom(byteArray: ByteArray): HostFirmwareResponse {
-            //TODO can we remove this?
-
-            //String buildBinStr = "";
-            //for(int i=43; i>35; i--) buildBinStr = buildBinStr.concat(Utils.convertByteToBinaryString(payloadBytes[i]));
-            //build = BigInteger.valueOf(Long.parseLong(buildBinStr, 2));
             val buildBytes = ByteArray(8)
             for (i in 43 downTo 36) {
                 buildBytes[-1 * i + 43] = byteArray[i]
             }
             val build = BigInteger(buildBytes)
 
-            //String reservedBinStr = "";
-            //for(int i=51; i>43; i--) reservedBinStr = reservedBinStr.concat(Utils.convertByteToBinaryString(payloadBytes[i]));
-            //reserved = BigInteger.valueOf(Long.parseLong(reservedBinStr, 2));
             val reservedBytes = ByteArray(8)
             for (i in 51 downTo 44) {
                 reservedBytes[-1 * i + 51] = byteArray[i]

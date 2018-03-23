@@ -4,7 +4,7 @@ import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.request.RequestCommand
 import org.stevenlowes.tools.lifxcontroller.values.Level
 
-data class SetLightPowerRequest(val level: Level = Level.MIN, var duration: Long = 0) : RequestCommand(117) {
+data class RequestSetLightPower(val level: Level = Level.MIN, var duration: Long = 0) : RequestCommand(117) {
     override val payloadBytes: ByteArray = ByteArray(6)
 
     init {

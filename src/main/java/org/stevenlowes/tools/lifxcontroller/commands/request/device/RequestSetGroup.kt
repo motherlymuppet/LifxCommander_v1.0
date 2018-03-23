@@ -4,13 +4,14 @@ import org.stevenlowes.tools.lifxcontroller.Utils
 import org.stevenlowes.tools.lifxcontroller.commands.request.RequestCommandUpdateTime
 import java.util.*
 
-data class SetLocationRequest(val location: ByteArray = ByteArray(16),
-                              val label: String = "N/A") : RequestCommandUpdateTime(49) {
+data class RequestSetGroup(val group: ByteArray = ByteArray(16),
+                           val label: String = "N/A") : RequestCommandUpdateTime(52) {
+
     override val payloadBytes: ByteArray = ByteArray(56)
 
     init {
         for (i in 0..15) {
-            payloadBytes[i] = location[15 - i]
+            payloadBytes[i] = group[15 - i]
         }
 
         val labelBytes: ByteArray = label.toByteArray()
@@ -26,9 +27,9 @@ data class SetLocationRequest(val location: ByteArray = ByteArray(16),
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as SetLocationRequest
+        other as RequestSetGroup
 
-        if (!Arrays.equals(location, other.location)) return false
+        if (!Arrays.equals(group, other.group)) return false
         if (label != other.label) return false
         if (!Arrays.equals(payloadBytes, other.payloadBytes)) return false
 
@@ -36,7 +37,7 @@ data class SetLocationRequest(val location: ByteArray = ByteArray(16),
     }
 
     override fun hashCode(): Int {
-        var result = Arrays.hashCode(location)
+        var result = Arrays.hashCode(group)
         result = 31 * result + label.hashCode()
         result = 31 * result + Arrays.hashCode(payloadBytes)
         return result

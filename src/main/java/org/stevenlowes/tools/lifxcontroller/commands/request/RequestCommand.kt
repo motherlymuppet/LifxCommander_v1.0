@@ -1,11 +1,13 @@
 package org.stevenlowes.tools.lifxcontroller.commands.request
 
-import org.stevenlowes.tools.lifxcontroller.commands.HasCode
+import org.stevenlowes.tools.lifxcontroller.commands.ProtocolType
 import org.stevenlowes.tools.lifxcontroller.commands.header.Frame
 import org.stevenlowes.tools.lifxcontroller.commands.header.FrameAddress
 import org.stevenlowes.tools.lifxcontroller.commands.header.Protocol
+import org.stevenlowes.tools.lifxcontroller.controller.ControlMethods
+import org.stevenlowes.tools.lifxcontroller.values.Port
 
-abstract class RequestCommand(code: Int) : HasCode(code) {
+abstract class RequestCommand(code: Int) : ProtocolType(code) {
     abstract val payloadBytes: ByteArray
 
     val requestBytes: ByteArray by lazy {
@@ -36,5 +38,9 @@ abstract class RequestCommand(code: Int) : HasCode(code) {
             byteArray[i] = this.payloadBytes[i - protocolEnd]
         }
         byteArray
+    }
+
+    fun broadcast(){
+        ControlMethods.sendBroadcastMessage(requestBytes, Port.port)
     }
 }

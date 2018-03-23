@@ -4,8 +4,6 @@ import org.stevenlowes.tools.lifxcontroller.commands.response.ResponseCommandUpd
 import java.math.BigInteger
 import java.util.*
 
-//TODO remove default args from responses
-
 data class GetGroupResponse(val group: ByteArray = ByteArray(16), val label: String = "N/A") : ResponseCommandUpdateTime(53) {
 
     companion object {

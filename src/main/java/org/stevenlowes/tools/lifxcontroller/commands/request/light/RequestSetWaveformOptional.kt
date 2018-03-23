@@ -6,7 +6,7 @@ import org.stevenlowes.tools.lifxcontroller.values.Color
 import org.stevenlowes.tools.lifxcontroller.values.Level
 import org.stevenlowes.tools.lifxcontroller.values.Waveform
 
-data class SetWaveformOptionalRequest(val reserved: Int = 0,
+data class RequestSetWaveformOptional(val reserved: Int = 0,
                                       val isTransient: Boolean = false,
                                       val color: Color = Color(),
                                       val period: Long = 0,

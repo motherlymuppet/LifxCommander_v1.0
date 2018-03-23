@@ -1,3 +1,3 @@
 package org.stevenlowes.tools.lifxcontroller.commands
 
-abstract class HasCode(val code: Int)
+abstract class ProtocolType(val code: Int)

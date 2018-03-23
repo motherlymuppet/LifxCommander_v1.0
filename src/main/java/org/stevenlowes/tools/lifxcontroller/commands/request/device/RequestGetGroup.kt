@@ -2,4 +2,4 @@ package org.stevenlowes.tools.lifxcontroller.commands.request.device
 
 import org.stevenlowes.tools.lifxcontroller.commands.request.SimpleRequestCommand
 
-class GetGroupRequest : SimpleRequestCommand(51)
+class RequestGetGroup : SimpleRequestCommand(51)

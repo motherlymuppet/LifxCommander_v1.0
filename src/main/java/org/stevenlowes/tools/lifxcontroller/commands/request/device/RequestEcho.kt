@@ -3,7 +3,7 @@ package org.stevenlowes.tools.lifxcontroller.commands.request.device
 import org.stevenlowes.tools.lifxcontroller.commands.request.RequestCommand
 import java.util.*
 
-data class EchoRequest(val payload: ByteArray = ByteArray(64)) : RequestCommand(58) {
+data class RequestEcho(val payload: ByteArray = ByteArray(64)) : RequestCommand(58) {
     override val payloadBytes: ByteArray = ByteArray(64)
 
     init {
@@ -16,7 +16,7 @@ data class EchoRequest(val payload: ByteArray = ByteArray(64)) : RequestCommand(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as EchoRequest
+        other as RequestEcho
 
         if (!Arrays.equals(payload, other.payload)) return false
         if (!Arrays.equals(payloadBytes, other.payloadBytes)) return false

@@ -24,7 +24,7 @@ data class Hue(val hueDegrees: Int) {
         val CRIMSON = Hue(330)
 
         private val rand = Random()
-        val random: Hue get() = Hue(rand.nextInt(360))
+        val RANDOM: Hue get() = Hue(rand.nextInt(360))
     }
 
     val binaryString: String = String.format("%16s",
