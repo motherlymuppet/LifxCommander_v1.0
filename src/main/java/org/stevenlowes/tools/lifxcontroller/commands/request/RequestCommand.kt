@@ -6,9 +6,7 @@ import org.stevenlowes.tools.lifxcontroller.commands.header.FrameAddress
 import org.stevenlowes.tools.lifxcontroller.commands.header.Protocol
 import org.stevenlowes.tools.lifxcontroller.values.Net
 import java.net.DatagramPacket
-import java.net.DatagramSocket
 import java.net.InetAddress
-import java.net.NetworkInterface
 
 abstract class RequestCommand(code: Int) : ProtocolType(code), Command {
     abstract val payloadBytes: ByteArray
@@ -41,29 +39,6 @@ abstract class RequestCommand(code: Int) : ProtocolType(code), Command {
             byteArray[i] = this.payloadBytes[i - protocolEnd]
         }
         byteArray
-    }
-
-    override fun broadcast() {
-        //TODO keep sendSocket open
-        val socket = DatagramSocket()
-        socket.broadcast = true
-
-        val interfaces = NetworkInterface.getNetworkInterfaces()
-        while (interfaces.hasMoreElements()) {
-            val networkInterface = interfaces.nextElement()
-
-            if (networkInterface.isLoopback || !networkInterface.isUp) {
-                continue
-            }
-
-            for (interfaceAddress in networkInterface.interfaceAddresses) {
-                val broadcast = interfaceAddress.broadcast ?: continue
-
-                val packet = DatagramPacket(requestBytes, requestBytes.size, broadcast, Net.port)
-                socket.send(packet)
-            }
-        }
-        socket.close()
     }
 
     override fun send(lights: List<InetAddress>) {

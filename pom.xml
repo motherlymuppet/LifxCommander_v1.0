@@ -6,7 +6,7 @@
 
     <groupId>org.stevenlowes.tools.lifx_controller</groupId>
     <artifactId>lifx_controller</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <kotlin.version>1.2.30</kotlin.version>
