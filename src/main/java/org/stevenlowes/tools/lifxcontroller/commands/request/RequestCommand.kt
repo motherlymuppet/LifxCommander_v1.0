@@ -46,6 +46,8 @@ abstract class RequestCommand(code: Int) : ProtocolType(code), Command {
             DatagramPacket(requestBytes, requestBytes.size, ip, Net.port)
         }.forEach { packet ->
             Net.sendSocket.send(packet)
+            Net.sendSocket.send(packet)
+            Net.sendSocket.send(packet)
         }
     }
 }
