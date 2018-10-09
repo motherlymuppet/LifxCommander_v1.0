@@ -43,7 +43,7 @@ abstract class RequestCommand(code: Int) : ProtocolType(code), Command {
 
     //TODO add retries parameter
 
-    override fun send(lights: List<InetAddress>) {
+    override fun send(lights: Collection<InetAddress>) {
         lights.map { ip ->
             DatagramPacket(requestBytes, requestBytes.size, ip, Net.port)
         }.forEach { packet ->
